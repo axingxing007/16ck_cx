@@ -24,6 +24,14 @@ class App(BasePage):
             self.driver.launch_app()
         self.driver.implicitly_wait(10)
 
+    def restart(self):
+        """
+        重启app
+        :return:
+        """
+        self.driver.close_app()
+        self.driver.launch_app()
+
     def stop(self):
         self.driver.quit()
 
