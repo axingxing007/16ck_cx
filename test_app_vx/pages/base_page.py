@@ -5,18 +5,21 @@ from appium.webdriver.webdriver import WebDriver
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.support.wait import WebDriverWait
 
+from test_app_xueqiu.handle_black import black_wrapper
+
 
 class BasePage:
     def __init__(self, driver: WebDriver = None):
         self.driver = driver
 
+    @black_wrapper
     def find(self, by, locator):
         """
+        方法上面加了装饰器，即增加了黑名单处理机制
         通过MobileBy类来查找单个元素，这个类继承By
         :return: 返回值的类型为WebElement
         """
-        ele = self.driver.find_element(by, locator)
-        return ele
+        return self.driver.find_element(by, locator)
 
     def finds(self, by, locator):
         """
