@@ -1,5 +1,13 @@
 import requests
 
+"""
+通讯录管理-成员管理
+ |--1、创建成员
+ |--2、读取成员
+ |--3、更新成员
+ |--4、删除成员
+"""
+
 
 class TestContact:
     _url = "https://qyapi.weixin.qq.com"
