@@ -8,3 +8,5 @@ class Demo(Test):
 
 d = Demo()
 print(d.__name)
+
+# 测试
