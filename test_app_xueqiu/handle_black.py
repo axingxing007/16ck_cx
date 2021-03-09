@@ -12,6 +12,7 @@ class BlackList(BasePage):
 def black_wrapper(func):
     @wraps(func)
     def run(*args, **kwargs):
+        print('----------', args, kwargs)
         self_1 = args[0]  # 此处表示函数find的第一个参数，为self
         self_1.driver.implictly_wait(1)  # 提高查找速度
         try:
