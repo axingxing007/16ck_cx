@@ -16,12 +16,14 @@ class TestData:
             if isinstance(step, dict):
                 if 'id' in step.keys():
                     ele = driver.find_element(MobileBy.ID, step['id'])
-                    print(ele.__class__.__name__)
                 elif 'xpath' in step.keys():
                     ele = driver.find_element(MobileBy.XPATH, step['xpath'])
+                else:
+                    print(step.keys())
                 if 'input' in step.keys():
                     ele.send_keys(step['input'])
                 else:
                     ele.click()
                 if 'get' in step.keys():
-                    ele.get_attribute(step['get'])
+                    text = ele.get_attribute(step['get'])
+                    print(text)

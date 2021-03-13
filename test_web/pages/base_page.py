@@ -5,7 +5,7 @@ from test_web.pages.handle_find_exception import handle_exception
 
 
 class BasePage:
-    def __init__(self, driver: WebDriver):
+    def __init__(self, driver: str):
         if driver.lower() == 'chrome':
             self.driver = webdriver.Chrome()
         elif driver.lower() == 'firefox':

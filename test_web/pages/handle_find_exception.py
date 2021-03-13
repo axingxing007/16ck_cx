@@ -9,18 +9,15 @@ class BlackHandleException:
     思路：增加异常处理流程，当异常出现时完成异常处理并再次重复原有步骤
     具体实现方式：使用递归处理技术 + 异常捕获技术 + python装饰器
     """
-    logging.basicConfig(level=logging.DEBUG)
     # 此列表专门用于添加黑名单元素，元素的类型为元组
     black_list = [(By.CSS_SELECTOR, 'a.close-btn')]
     error_count = 0  # 类变量，初始化为0
 
 
 def handle_exception(func):
-    logging.basicConfig(level=logging.INFO)
-
     @wraps(func)
     def magic(*args, **kwargs):
-        logging.basicConfig(level=logging.DEBUG)
+        logging.info(f'传入的args参数为：{args}，传入的kwargs参数为：{kwargs}')
         from test_web.pages.base_page import BasePage
         # 获取BasePage类的对象
         _self: BasePage = args[0]
@@ -44,7 +41,7 @@ def handle_exception(func):
                     elements[0].click()
                     _self.driver.implicitly_wait(10)
                     return magic(*args, **kwargs)
-            logging.warning('black list no one found')
+            logging.warning('black list not found')
             raise e
 
     return magic
