@@ -34,12 +34,14 @@ def handle_exception(func):
                 raise e
             # 对黑名单列表进行遍历
             for element in BlackHandleException.black_list:
+                # 缩短隐式等待的时间
                 _self.driver.implicitly_wait(2)
                 logging.info(element)
                 elements = _self.finds(element)
                 if len(elements) > 0:
                     elements[0].click()
                     _self.driver.implicitly_wait(10)
+                    # 恢复隐式等待的时间
                     return magic(*args, **kwargs)
             logging.warning('black list not found')
             raise e
